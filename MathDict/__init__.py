@@ -1,5 +1,6 @@
 # Reference: https://docs.python.org/2/reference/datamodel.html
 # Reference: https://docs.python.org/2/library/operator.html
+
 from __future__ import division
 from collections import defaultdict, OrderedDict, Mapping
 from copy import deepcopy
@@ -17,7 +18,9 @@ def op_if_other_has_same_keys_or_is_not_dict(op, math_dict, other=None, **kwargs
         return MathDict({k: op(v, **kwargs) for k, v in math_dict.items()})
     else:
         keys___set = set(math_dict)
-        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) &\
+        print(other)
+        print(isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)))
+        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) and\
                 (set(other) == keys___set):
             return MathDict({k: op(math_dict[k], other[k], **kwargs) for k in keys___set})
         else:
@@ -149,7 +152,7 @@ class MathDict(Mapping):
 
     def __rdiv__(self, other):
         keys___set = set(self)
-        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) &\
+        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) and\
                 (set(other) == keys___set):
             return MathDict({k: other[k] / self[k] for k in keys___set})
         else:
@@ -163,7 +166,7 @@ class MathDict(Mapping):
 
     def __rtruediv__(self, other):
         keys___set = set(self)
-        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) &\
+        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) and\
                 (set(other) == keys___set):
             return MathDict({k: truediv(other[k], self[k]) for k in keys___set})
         else:
@@ -177,7 +180,7 @@ class MathDict(Mapping):
 
     def __rfloordiv__(self, other):
         keys___set = set(self)
-        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) &\
+        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) and\
                 (set(other) == keys___set):
             return MathDict({k: other[k] // self[k] for k in keys___set})
         else:
@@ -188,7 +191,7 @@ class MathDict(Mapping):
 
     def __rmod__(self, other):
         keys___set = set(self)
-        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) &\
+        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) and\
                 (set(other) == keys___set):
             return MathDict({k: other[k] % self[k] for k in keys___set})
         else:
@@ -202,7 +205,7 @@ class MathDict(Mapping):
 
     def __rpow__(self, other):
         keys___set = set(self)
-        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) &\
+        if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) and\
                 (set(other) == keys___set):
             return MathDict({k: other[k] ** self[k] for k in keys___set})
         else:
