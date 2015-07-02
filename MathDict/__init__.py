@@ -18,8 +18,6 @@ def op_if_other_has_same_keys_or_is_not_dict(op, math_dict, other=None, **kwargs
         return MathDict({k: op(v, **kwargs) for k, v in math_dict.items()})
     else:
         keys___set = set(math_dict)
-        print(other)
-        print(isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)))
         if isinstance(other, (dict, defaultdict, OrderedDict, frozendict, FrozenOrderedDict, MathDict)) and\
                 (set(other) == keys___set):
             return MathDict({k: op(math_dict[k], other[k], **kwargs) for k in keys___set})
