@@ -198,12 +198,8 @@ class MathDict(Mapping):
     def __ipow__(self, power):
         self **= power
 
-    def allclose(self, other, rtol=1e-5, atol=1e-8, _all=True):
-        results = self.__op__(sympy_allclose, other, rtol=rtol, atol=atol)
-        if _all and hasattr(results, 'keys'):
-            return all(results.values())
-        else:
-            return results
+    def allclose(self, other, rtol=1e-5, atol=1e-8):
+        return all(self.__op__(sympy_allclose, other, rtol=rtol, atol=atol).values())
 
     def pprint(self):
         pprint(self())
