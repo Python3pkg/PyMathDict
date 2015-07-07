@@ -1,1 +1,1 @@
-# PyMathDict
+# MathDict

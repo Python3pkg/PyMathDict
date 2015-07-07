@@ -1,11 +1,8 @@
-# Reference: https://docs.python.org/2/reference/datamodel.html
-# Reference: https://docs.python.org/2/library/operator.html
-
 from __future__ import division
 from collections import Mapping
 from copy import deepcopy
 from frozendict import frozendict
-from Helpy.SymPy import sympy_allclose
+from HelpyFuncs.SymPy import sympy_allclose
 from itertools import product
 from operator import index, pos, neg, abs, lt, le, ge, gt, add, sub, mul, div, truediv, floordiv, mod, pow, xor
 from pprint import pprint
@@ -138,7 +135,7 @@ class MathDict(Mapping):
         return self.op(op=gt, other=other)
 
     # Bit-Wise Operations
-    # (SKIPPING ALL IN-PLACE METHODS)
+    # (SKIPPING ALL IN-PLACE METHODS, which seem to have bugs on Windows)
     def __add__(self, other):
         return self.op(op=add, other=other)
 
