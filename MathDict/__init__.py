@@ -47,7 +47,7 @@ class MathDict(Mapping):
     def __call__(self):
         return self.Mapping
 
-    def copy(self, deep=True):
+    def copy(self, deep=False):
         if deep:
             return MathDict(deepcopy(self.Mapping))
         else:
