@@ -4,8 +4,8 @@
 from __future__ import division
 from collections import Mapping
 from copy import deepcopy
-from Helpy.SymPy import sympy_allclose
 from frozendict import frozendict
+from Helpy.SymPy import sympy_allclose
 from itertools import product
 from operator import index, pos, neg, abs, lt, le, eq, ne, ge, gt, add, sub, mul, div, truediv, floordiv, mod, pow, xor
 from pprint import pprint
