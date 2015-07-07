@@ -72,7 +72,7 @@ class MathDict(Mapping):
                     else:
                         value = op(func_value_0, func_value_1, **kwargs)
                     mapping[frozendict(set(vars_and_values_0___frozen_dict.items()) |
-                                      set(vars_and_values_1___frozen_dict.items()))] = value
+                                       set(vars_and_values_1___frozen_dict.items()))] = value
             return MathDict(mapping)
         elif other is None:
             return MathDict({k: op(v, **kwargs) for k, v in self.items()})
@@ -135,8 +135,8 @@ class MathDict(Mapping):
     def __radd__(self, other):
         return self + other
 
-    def __iadd__(self, other):
-        self += other
+#    def __iadd__(self, other):
+#        self += other
 
     def __sub__(self, other):
         return self.op(sub, other)
@@ -144,8 +144,8 @@ class MathDict(Mapping):
     def __rsub__(self, other):
         return (-self) + other
 
-    def __isub__(self, other):
-        self -= other
+#    def __isub__(self, other):
+#        self -= other
 
     def __mul__(self, other):
         return self.op(mul, other)
@@ -153,8 +153,8 @@ class MathDict(Mapping):
     def __rmul__(self, other):
         return self * other
 
-    def __imul__(self, other):
-        self *= other
+#    def __imul__(self, other):
+#        self = self * other
 
     def __div__(self, other):
         return self.op(div, other)
@@ -162,8 +162,8 @@ class MathDict(Mapping):
     def __rdiv__(self, other):
         return self.op(div, other, r=True)
 
-    def __idiv__(self, other):
-        self /= other
+#    def __idiv__(self, other):
+#        self /= other
 
     def __truediv__(self, other):
         return self.op(truediv, other)
@@ -171,8 +171,8 @@ class MathDict(Mapping):
     def __rtruediv__(self, other):
         return self.op(truediv, other, r=True)
 
-    def __itruediv__(self, other):
-        self /= other
+#    def __itruediv__(self, other):
+#        self /= other
 
     def __floordiv__(self, other):
         return self.op(floordiv, other)
@@ -180,14 +180,17 @@ class MathDict(Mapping):
     def __rfloordiv__(self, other):
         return self.op(floordiv, other, r=True)
 
+#    def __ifloordiv__(self, other):
+#        self //= other
+
     def __mod__(self, other):
         return self.op(mod, other)
 
     def __rmod__(self, other):
         return self.op(mod, other, r=True)
 
-    def __imod__(self, other):
-        self %= other
+#    def __imod__(self, other):
+#        self %= other
 
     def __pow__(self, power):
         return self.op(pow, power)
@@ -195,8 +198,8 @@ class MathDict(Mapping):
     def __rpow__(self, other):
         return self.op(pow, other, r=True)
 
-    def __ipow__(self, power):
-        self **= power
+#    def __ipow__(self, power):
+#        self **= power
 
     def allclose(self, other, rtol=1e-5, atol=1e-8):
         return all(self.op(sympy_allclose, other, rtol=rtol, atol=atol).values())
