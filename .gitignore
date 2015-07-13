@@ -56,5 +56,6 @@ docs/_build/
 # PyBuilder
 target/
 
-# PyCharm
-.idea/*.*
+# JetBrains IntelliJ IDEA files
+*.iml
+.idea/
