@@ -1,4 +1,4 @@
-from __future__ import division
+
 from collections import Mapping
 from copy import deepcopy
 from frozendict import frozendict
@@ -7,6 +7,7 @@ from itertools import product
 from operator import index, pos, neg, abs, lt, le, ge, gt, add, sub, mul, div, truediv, floordiv, mod, pow, xor
 from pprint import pprint
 from sympy import exp as e, log as ln, sqrt as square_root
+from functools import reduce
 
 
 class MathDict(Mapping):
@@ -38,7 +39,7 @@ class MathDict(Mapping):
 
     def __hash__(self):
         if self.Hash is None:
-            self.Hash = reduce(xor, map(hash, self.iteritems()), 0)
+            self.Hash = reduce(xor, list(map(hash, iter(self.items()))), 0)
         return self.Hash
 
     # __call__: simply return Mapping
@@ -59,7 +60,7 @@ class MathDict(Mapping):
     def op(self, op=mul, other=None, r=False, **kwargs):
         math_dict = MathDict()
         if hasattr(other, 'keys'):
-            for item_0, item_1 in product(self.items(), other.items()):
+            for item_0, item_1 in product(list(self.items()), list(other.items())):
                 vars_and_values_0___frozen_dict, func_value_0 = item_0
                 vars_and_values_1___frozen_dict, func_value_1 = item_1
                 same_vars_same_values = True
@@ -75,13 +76,13 @@ class MathDict(Mapping):
                     math_dict[frozendict(set(vars_and_values_0___frozen_dict.items()) |
                                          set(vars_and_values_1___frozen_dict.items()))] = value
         elif other is None:
-            for k, v in self.items():
+            for k, v in list(self.items()):
                 math_dict[k] = op(v, **kwargs)
         elif r:
-            for k, v in self.items():
+            for k, v in list(self.items()):
                 math_dict[k] = op(other, v, **kwargs)
         else:
-            for k, v in self.items():
+            for k, v in list(self.items()):
                 math_dict[k] = op(v, other, **kwargs)
         return math_dict
 
@@ -93,7 +94,7 @@ class MathDict(Mapping):
         return self.op(op=int)
 
     def __long__(self):
-        return self.op(op=long)
+        return self.op(op=int)
 
     def __hex__(self):
         return self.op(op=hex)
